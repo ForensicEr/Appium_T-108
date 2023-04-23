@@ -1,7 +1,10 @@
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
@@ -9,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class ArabamAppTest {
@@ -37,7 +41,7 @@ public class ArabamAppTest {
     }
 
     @Test
-    public void arabamTest(){
+    public void arabamTest() throws InterruptedException {
         // driver.findElement(By.xpath("//*[@text='İlan ver']")).click();
 
         //Arabam kac para bolumune tikla
@@ -48,10 +52,71 @@ public class ArabamAppTest {
         fiyatMerak.click();
 
         //Volkswagen markasini secelim
+        TouchAction action=new TouchAction<>(driver);
+        action.press(PointOption.point(543,1730)).
+                waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
+                moveTo(PointOption.point(537,381)).
+                release().perform();
+
+        Thread.sleep(2000);
+
+        driver.findElementByXPath("  //*[@text='Volkswagen']").click();
+
+        /*a ction.press(PointOption.point(537,381)).
+                waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
+                moveTo(PointOption.point(543,1732)).
+                release().perform();
+
+         */
 
         // Yil secimi yap
+        driver.findElementByXPath("  //*[@text='2011']").click();
 
         // Model secimi yap
+        driver.findElementByXPath("  //*[@text='Passat']").click();
+
+        // Govde secimi yap
+        driver.findElementByXPath("  //*[@text='Sedan']").click();
+
+        // Yakit tipi secimi
+        driver.findElementByXPath("  //*[@text='Benzin']").click();
+
+        // Vites tipini secelim
+        driver.findElementByXPath("  //*[@text='Yari Otomatik']").click();
+
+        // Versiyon secimi yapalim
+        Thread.sleep(1000);
+        action.press(PointOption.point(490,1747)).release().perform();
+
+        // Aracin km bilgilerini girelim
+        if (driver.isKeyboardShown()){
+            driver.getKeyboard().pressKey("190000");
+        }
+        else {
+            driver.findElementById("com.dogan.arabam:id/et_km").sendKeys("190000");
+        }
+        driver.findElementById("com.dogan.arabam:id/btn_price_prediction_submit").click();
+
+        // aracin rengini secelim
+        driver.findElementByXPath("  //*[@text='Gri (metalik)']").click();
+
+        // Opsiyonel donanim varsa secelim
+        driver.findElementById("  com.dogan.arabam:id:btnNext").click();
+
+        // Degisen bilgisi ekleyerek tramer kaydi belirtelim
+        AndroidElement kaput= driver.findElementById("com.dogan,arabam:id/iv_B01001");
+        kaput.click();
+
+        driver.findElementByXPath("(//*[@text='Boyali'])[2]").click();
+
+        Thread.sleep(1000);
+        driver.findElementById("com.dogan.arabam:id/btn_next").click();
+
+        // Aracimizin fiyatinin 500.00 tl den fazla oldugunu test edelim
+
+
+
+
 
 
 
