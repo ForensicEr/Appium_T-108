@@ -18,6 +18,26 @@ public class KiwiPage {
     @FindBy (xpath = "//*[@text='Continue as a guest']")
     public WebElement asAGuest;
 
+    @FindBy (xpath = "//*[@text='Return']")
+    public WebElement returnButton;
+
+    @FindBy (xpath = "//*[@text='One way']")
+    public WebElement oneWay;
+
+    @FindBy (xpath = "//*[@text='From:']")
+    public WebElement kalkisButonu;
+
+    @FindBy (xpath = "//android.view.View[@content-desc=\"Clear All\"]")
+    public WebElement defaultUlkeSilme;
+
+    @FindBy (xpath = "//*[@text='İzmir, Turkey']")
+    public WebElement izmir;
+
+    @FindBy (xpath = "//*[@text='Choose']")
+    public WebElement choose;
+
+
+
     public void ucButtonTiklama(int baslangic, int bitis, int xCoordinat, int yCoordinat, int wait){
         TouchAction action=new TouchAction<>(Driver.getAndroidDriver());
         for (int i = baslangic; i <bitis ; i++) {
