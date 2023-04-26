@@ -36,9 +36,18 @@ public class KiwiPage {
     @FindBy (xpath = "//*[@text='Choose']")
     public WebElement choose;
 
+    @FindBy (xpath = "(//*[@text='Anywhere'])[1]")
+    public WebElement anywhere;
+
+    @FindBy (xpath = "//*[@text='Berlin, Germany']")
+    public WebElement berlin;
+
+    @FindBy (xpath = "(//*[@text='Anytime'])[1]")
+    public WebElement anyTimeButton;
 
 
-    public void ucButtonTiklama(int baslangic, int bitis, int xCoordinat, int yCoordinat, int wait){
+
+    public static void ucButtonTiklama(int baslangic, int bitis, int xCoordinat, int yCoordinat, int wait){
         TouchAction action=new TouchAction<>(Driver.getAndroidDriver());
         for (int i = baslangic; i <bitis ; i++) {
             action.press(PointOption.point(xCoordinat,yCoordinat)).

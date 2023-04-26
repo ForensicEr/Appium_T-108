@@ -30,7 +30,7 @@ public class KiwiTest {
 
     KiwiPage page= new KiwiPage();
     @Test
-    public void kiwiTest(){
+    public void kiwiTest() throws InterruptedException {
         // uygulamanin yuklendigi dogrulanir
         Assert.assertTrue(driver.isAppInstalled("com.skypicker.main"), "uygulama yuklenemedi");
 
@@ -41,7 +41,7 @@ public class KiwiTest {
        page.asAGuest.click();
 
         // ardinda gelecek olan 3 adimada yesil butona basilarak devam edilir
-        page.ucButtonTiklama(0,3,538,1686,500);
+        KiwiPage.ucButtonTiklama(0,3,538,1686,500);
 
         // Trip type,one way olarak secilir
         page.returnButton.click();
@@ -55,6 +55,25 @@ public class KiwiTest {
         driver.getKeyboard().pressKey("Izmir");
         page.izmir.click();
         page.choose.click();
+
+        // varis ulkesi secenegine tiklanir ve gidilecek ulke girilir
+        page.anywhere.click();
+        driver.getKeyboard().pressKey("berlin");
+        page.berlin.click();
+        page.choose.click();
+        page.anyTimeButton.click();
+
+        // gidis tarihi mayis ayinin 21 i olarak secilir ve set date e tiklanir
+        Thread.sleep(2000);
+        TouchAction action=new TouchAction<>(driver);
+        action.press(PointOption.point(502,1325)).
+                waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
+                moveTo(PointOption.point(532,208)).release().perform();
+
+        Thread.sleep(1500);
+        action.press(PointOption.point(122,1030)).release().perform();
+
+
 
 
 
