@@ -73,6 +73,22 @@ public class KiwiTest {
         Thread.sleep(1500);
         action.press(PointOption.point(122,1030)).release().perform();
 
+        page.setDate.click();
+
+        // search butonuna tiklanir
+        page.search.click();
+
+        // en  ucuz ve aktarmasiz filtrelemeleri yapilir
+        page.bestPrice.click();
+        page.cheapest.click();
+        page.stops.click();
+        page.nonStop.click();
+
+        // gelen bilet fiyati kaydedilir ve kullanicin telefonuna sms olarak gonderilir
+        String price= page.ticketprice.getText();
+        driver.sendSMS("555555555",price);
+
+
 
 
 

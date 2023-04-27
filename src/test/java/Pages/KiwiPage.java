@@ -45,6 +45,27 @@ public class KiwiPage {
     @FindBy (xpath = "(//*[@text='Anytime'])[1]")
     public WebElement anyTimeButton;
 
+    @FindBy (xpath = "//*[@text='Set date']")
+    public WebElement setDate;
+
+    @FindBy (xpath = "(//*[@text='Search'])[1]")
+    public WebElement search;
+
+    @FindBy (xpath = "(//*[@text='Best'])[1]")
+    public WebElement bestPrice;
+
+    @FindBy (xpath = "(//*[@text='Cheapest'])[1]")
+    public WebElement cheapest;
+
+    @FindBy (xpath = "(//*[@text='Stops'])[1]")
+    public WebElement stops;
+
+    @FindBy (xpath = "(//*[@text='Nonstop'])[1]")
+    public WebElement nonStop;
+
+    @FindBy (xpath = "//*[@class='android.widget.TextView'][12]")
+    public WebElement ticketprice;
+
 
 
     public static void ucButtonTiklama(int baslangic, int bitis, int xCoordinat, int yCoordinat, int wait){
